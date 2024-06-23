@@ -15,6 +15,21 @@ import { RouterModule } from '@angular/router';
 import { AuthGuard } from './_auth/auth.guard';
 import { AuthInterceptor } from './_auth/auth.interceptor';
 import { UserService } from './_services/user.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { VendorComponent } from './vendor/vendor.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatButtonModule} from '@angular/material/button';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatIconModule} from '@angular/material/icon';
+import { AddNewProductComponent } from './add-new-product/add-new-product.component';
+import {MatGridListModule} from '@angular/material/grid-list';
+import { DragDirective } from './drag.directive';
+import { ShowProductDetailsComponent } from './show-product-details/show-product-details.component';
+import {MatTableModule} from '@angular/material/table';
+import { ShowProductImagesDialogComponent } from './show-product-images-dialog/show-product-images-dialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { ProductViewDetailsComponent } from './product-view-details/product-view-details.component';
 
 @NgModule({
   declarations: [
@@ -24,14 +39,29 @@ import { UserService } from './_services/user.service';
     UserComponent,
     LoginComponent,
     HeaderComponent,
-    ForbiddenComponent
+    ForbiddenComponent,
+    VendorComponent,
+    AddNewProductComponent,
+    DragDirective,
+    ShowProductDetailsComponent,
+    ShowProductImagesDialogComponent,
+    ProductViewDetailsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    RouterModule
+    RouterModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    MatGridListModule,
+    MatTableModule,
+    MatDialogModule
   ],
   providers: [
     AuthGuard,

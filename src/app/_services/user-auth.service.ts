@@ -32,4 +32,18 @@ export class UserAuthService {
     return this.getRoles() && this.getToken();
    }
 
+   public isVendor(){
+    const roles: any[] = this.getRoles();
+    return roles[0].roleName === 'Vendor';
+   }
+
+   public isUser(){
+    const roles: any[] = this.getRoles();
+    return roles[0].roleName === 'User';
+   }
+
+   public isAdmin(){
+    const roles: any[] = this.getRoles();
+    return roles[0].roleName === 'Admin';
+   }
 }

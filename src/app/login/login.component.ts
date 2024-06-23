@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  hide = true;
   constructor(private userService: UserService,
               private userAuthService: UserAuthService,
               private router: Router) {}
@@ -28,7 +29,12 @@ export class LoginComponent implements OnInit {
         const role = response.user.role[0].roleName;
         if (role === 'Admin') {
           this.router.navigate(['/admin']);
-        } else {
+        }
+        else if(role === 'Vendor') {
+          this.router.navigate(['/vendor']);
+        }
+        
+        else {
           this.router.navigate(['/user']);
         }
       },

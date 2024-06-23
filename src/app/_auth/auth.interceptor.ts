@@ -6,13 +6,12 @@ import { Injectable } from "@angular/core";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor{
-    
+
     constructor(private userAuthService: UserAuthService,
         private router: Router
     ){}
     
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        
 
         if(req.headers.get("No-Auth") === "True"){
             return next.handle(req.clone());
@@ -20,7 +19,9 @@ export class AuthInterceptor implements HttpInterceptor{
 
         const token = this.userAuthService.getToken();
 
-        req = this.addToken(req, token);
+        if(token){
+            req = this.addToken(req, token);
+        }
 
         return next.handle(req).pipe(
             catchError(
