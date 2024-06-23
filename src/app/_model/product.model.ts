@@ -4,8 +4,8 @@ export interface Product{
     productId: number | any,
     productName: String,
     productDescription: String,
-    productDiscountedPrice: Number,
-    productActualPrice: Number,
+    productDiscountedPrice: Number | any,
+    productActualPrice: Number | any,
     productImages: FileHandle[]
 }
 
