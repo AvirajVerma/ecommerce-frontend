@@ -1,0 +1,30 @@
+table {
+    width: 50%;
+    
+}
+
+.mat-column-Description{
+    width: 35% !important;
+    text-align: center;
+}
+
+.mat-column-Item,.mat-column-Price{
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.mat-column-Price,
+.mat-column-Action,
+.mat-column-Item{
+    text-align: center;
+}
+
+table th{
+    font-weight: bold;
+    text-align: center;
+    font-size: 18px;
+}
+
+table td{
+    padding: 10px;
+}

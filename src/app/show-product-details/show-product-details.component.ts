@@ -15,8 +15,11 @@ import { Router } from '@angular/router';
 })
 export class ShowProductDetailsComponent implements OnInit {
   
+  pageNumber: number = 0;
+  showTable = false;
+  showLoadMoreProductButton = false;
   productDetails: Product[] = [];
-  displayedColumns: string[] = ['Id', 'product_name', 'description', 'Product Actual Price', 'Product Discounted Price', 'Action'];
+  displayedColumns: string[] = ['Id', 'product_name', 'description', 'product_actual_price', 'product_discounted_price', 'Action'];
   
   constructor(private productService: ProductService,
     public imagesDialog: MatDialog,
@@ -28,8 +31,17 @@ export class ShowProductDetailsComponent implements OnInit {
 
   }
 
-  public getAllProducts(){
-    this.productService.getAllProducts()
+  searchBykeyword(searchkeyword: any){
+    console.log(searchkeyword);
+    this.pageNumber = 0;
+    this.productDetails = [];
+    this.getAllProducts(searchkeyword);
+
+  }
+
+  public getAllProducts(searchKeyword: string = ""){
+    this.showTable = false;
+    this.productService.getAllProducts(this.pageNumber,searchKeyword)
     .pipe(
       map((x: Product[], i) =>x.map((product: Product) => this.imageProcessingService.createImages(product)))
     )
@@ -37,7 +49,16 @@ export class ShowProductDetailsComponent implements OnInit {
       next:
       (resp: Product[]) => {
         console.log(resp);
-        this.productDetails = resp;
+        // this.productDetails = resp;
+        resp.forEach(product => this.productDetails.push(product));
+        this.showTable = true;
+
+        if(resp.length == 12){
+          this.showLoadMoreProductButton = true;
+        }else{
+          this.showLoadMoreProductButton = false;
+        }
+
       },
       error:
       (error: HttpHeaderResponse) => {
@@ -72,5 +93,14 @@ export class ShowProductDetailsComponent implements OnInit {
 
   editProductDetails(productId: number | any){
     this.router.navigate(['/addNewProduct', {productId: productId}])
+  }
+
+  loadMoreProdcuts(){
+    this.pageNumber = this.pageNumber + 1;
+    this.getAllProducts();
+  }
+
+  toggleDescription(element: any) {
+    element.showFullDescription = !element.showFullDescription;
   }
 }

@@ -1,12 +1,17 @@
-<mat-toolbar color="primary">
-  <span>E Commerce Application</span>
+<mat-toolbar color="primary" style="background-color: #14213D;">
+  <span style="cursor: pointer;" ><span style="color: rgb(235, 50, 50); font-size: 30px; font-weight: bold;" routerLink="/">TEK</span><span style="color: rgb(211, 229, 182);">Tonic</span></span>
   <span class="example-spacer"></span>
-  <button *ngIf="! isLoggedIn()" mat-raised-button color="primary" routerLink="/login">Login</button>
-  <button *ngIf="isLoggedIn()" mat-raised-button color="warn" (click)="logout()">Logout</button>
+  
+  <button *ngIf="! isLoggedIn()" mat-raised-button color="primary" style="background-color: #FCA311; color: #14213D; border-radius: 20px;" routerLink="/login">Login</button>
+  <button *ngIf="isLoggedIn()" mat-raised-button color="warn" style="border-radius: 20px;" (click)="logout()">Logout</button>
 </mat-toolbar>
 
 <mat-toolbar *ngIf="isLoggedIn()">
-  <button mat-raised-button color="primary" routerLink="/">Home</button>
-  <button *ngIf="isVendor()" mat-raised-button color="primary" routerLink="/addNewProduct">Add New Product</button>
-  <button *ngIf="isVendor()" mat-raised-button color="primary" routerLink="/showProductDetails">Show Products</button>
+  <button mat-raised-button color="primary" style="background-color: #14213D; margin-left: 5px; border-radius: 20px;" routerLink="/">Home</button>
+  <span class="example-spacer"></span>
+  <div>
+    <button mat-mini-fab *ngIf="isUser()" color="primary" style="background-color: #14213D; margin-left: 5px; border-radius: 20px;" routerLink="/cart"><mat-icon>shopping_cart</mat-icon></button>
+    <button *ngIf="isVendor()" mat-raised-button color="primary" style="background-color: #14213D; margin-left: 5px; border-radius: 20px;" routerLink="/addNewProduct">Add New Product</button>
+    <button *ngIf="isVendor()" mat-raised-button color="primary" style="background-color: #14213D; margin-left: 5px; border-radius: 20px;" routerLink="/showProductDetails">Show Products</button>
+  </div>
 </mat-toolbar>

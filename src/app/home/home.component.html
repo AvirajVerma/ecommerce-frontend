@@ -1,7 +1,24 @@
 <div class="container mt-5 ">
+
+    <mat-form-field  appearance="outline" class="w-100">
+        <mat-label>Search any product</mat-label>
+        <mat-icon matPrefix>search</mat-icon>
+        <input matInput 
+        #searchkeyword
+        (keyup)="searchBykeyword(searchkeyword.value)"
+        type="text" 
+        [(ngModel)]="value"
+        name="searchKey" 
+        id="searchKey" 
+        placeholder="Ex.iPhone 15 Pro">
+        <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="removeAllLetters()">
+          <mat-icon>close</mat-icon>
+        </button>
+    </mat-form-field>
+
     <mat-grid-list cols="4" rowHeight="4:7" gutterSize="10">
         <mat-grid-tile *ngFor="let p of productDetails">
-            <div class="row">
+            <div class="row" (click)="showProductDetails(p.productId)" style="cursor: pointer;">
                 <div class="image-container">
                     <img class="home-page-product-image" [src] = "p.productImages[0].url" alt="">
                 </div>
@@ -12,13 +29,17 @@
                     <p style="white-space: inherit; text-overflow: ellipsis; height: 40px; width: auto; overflow: hidden;">{{p.productDescription}}</p>
                 </div>
                 <div class="mt-2">
-                    <b>{{p.productDiscountedPrice | currency: '&#8377;' }}</b> &nbsp; <b style="text-decoration: line-through;">{{p.productActualPrice | currency: 'INR' }}</b>
+                    <b style="font-size: medium;">{{p.productDiscountedPrice | currency: 'INR' }}</b> &nbsp; <b style="text-decoration: line-through; font-weight: 200;">{{p.productActualPrice | currency: 'INR' }}</b>
                 </div>
-                <div class="mt-2">
-                    <button mat-raised-button color="warn" style="border-radius: 30px;" (click)="showProductDetails(p.productId)">View Details</button>
+                <div class="mt-3">
+                    <button mat-raised-button color="warn" style="border-radius: 20px;" (click)="showProductDetails(p.productId)">View Details</button>
                 </div>
             </div>
         </mat-grid-tile>
       </mat-grid-list>
+
+      <div class="text-center mt-5" style="padding-bottom: 30px;" *ngIf="showLoadButton">
+        <button type="button" mat-raised-button color="warn" style=" border-radius: 20px; background-color: #14213D;" (click)="loadMoreProduct()">Load More</button>
+      </div>
       
 </div>

@@ -90,4 +90,16 @@ export class AddNewProductComponent implements OnInit {
     this.product.productImages.push(fileHandle);
   }
 
+  clearForm(form: any) {
+    form.resetForm();
+    this.product = {
+      productId: null,
+      productName: '',
+      productDescription: '',
+      productActualPrice: null,
+      productDiscountedPrice: null,
+      productImages: []
+    };
+  }
+
 }

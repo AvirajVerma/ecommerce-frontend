@@ -32,7 +32,9 @@
                     </p>
                 </div>
                 <div class="mt-5 text-center">
-                    <button mat-raised-button color="warn" style="width: 200px;">Buy Now</button>
+                    <button mat-raised-button color="warn" style="width: 200px; border-radius: 20px;  background-color: rgb(79, 175, 146);" (click)="buyProduct(product.productId)">Buy Now</button>
+                    &nbsp;&nbsp;
+                    <button mat-raised-button color="warn" style="width: 200px; border-radius: 20px;" (click)="addToCart(product.productId)">Add to Cart</button>
                 </div>
                 
             </div>
