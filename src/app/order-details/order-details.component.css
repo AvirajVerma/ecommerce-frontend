@@ -1,0 +1,12 @@
+table{
+    width: 100%;
+}
+
+.selected-delivered {
+    background-color: rgb(79, 175, 146) !important;
+  }
+  
+  .text-end {
+    display: flex;
+    justify-content: end;
+  }

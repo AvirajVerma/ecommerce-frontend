@@ -32,7 +32,6 @@ export class CartComponent implements OnInit{
         error:
         (err) => {
           console.log(err);
-          console.log("chala ja ")
         }
       }
     );

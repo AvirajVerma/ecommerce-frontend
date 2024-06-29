@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   hide = true;
+  loginError: string = '';
+  formError: string = '';
   constructor(private userService: UserService,
               private userAuthService: UserAuthService,
               private router: Router) {}
@@ -18,6 +20,16 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   login(loginForm: NgForm) {
+    this.formError = '';
+
+    if (loginForm.invalid) {
+      this.formError = 'Please fill out all required fields.';
+      Object.keys(loginForm.controls).forEach(field => {
+        const control = loginForm.form.get(field);
+        control?.markAsTouched({ onlySelf: true });
+      });
+      return;
+    }
     this.userService.login(loginForm.value).subscribe({
       next: (response: any) => {
         // console.log(response.jwtToken);
@@ -39,6 +51,7 @@ export class LoginComponent implements OnInit {
         }
       },
       error: (error) => {
+        this.loginError = 'Invalid username or password.';
         console.log(error);
       }
     });

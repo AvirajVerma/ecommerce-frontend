@@ -1,12 +1,28 @@
 <mat-toolbar color="primary" style="background-color: #14213D;">
   <span style="cursor: pointer;" ><span style="color: rgb(235, 50, 50); font-size: 30px; font-weight: bold;" routerLink="/">TEK</span><span style="color: rgb(211, 229, 182);">Tonic</span></span>
   <span class="example-spacer"></span>
+  <div *ngIf="isLoggedIn()">
+    <button mat-raised-button color="primary" style="background-color: #14213D; margin-left: 5px; border-radius: 20px;" routerLink="/">Home</button>
+    <!-- <span class="example-spacer"></span> -->
   
-  <button *ngIf="! isLoggedIn()" mat-raised-button color="primary" style="background-color: #FCA311; color: #14213D; border-radius: 20px;" routerLink="/login">Login</button>
-  <button *ngIf="isLoggedIn()" mat-raised-button color="warn" style="border-radius: 20px;" (click)="logout()">Logout</button>
+      <button mat-raised-button *ngIf="isUser()" color="primary" style="background-color: #14213D; margin-left: 5px; border-radius: 20px;" routerLink="/myOrders">My Orders</button>
+      <button mat-fab *ngIf="isUser()" color="primary" style="background-color: #14213D; margin-left: 5px; border-radius: 20px;" routerLink="/cart">
+        <mat-icon matBadgeOverlap="false" [matBadge]="cartLength" matBadgeColor="warn">shopping_cart</mat-icon>
+      </button> &nbsp;
+      <button *ngIf="isVendor()" mat-raised-button color="primary" style="background-color: #14213D; margin-left: 5px; border-radius: 20px;" routerLink="/addNewProduct">Add New Product</button>
+      <button *ngIf="isVendor()" mat-raised-button color="primary" style="background-color: #14213D; margin-left: 5px; border-radius: 20px;" routerLink="/showProductDetails">Show Products</button>
+      <button *ngIf="isVendor()" mat-raised-button color="primary" style="background-color: #14213D; margin-left: 5px; border-radius: 20px;" routerLink="/orderDetails">Order Information</button> &nbsp;
+
+  </div>
+  
+  &nbsp;
+  &nbsp;
+
+  <button *ngIf="! isLoggedIn()" mat-raised-button color="primary" style="background-color: #FCA311; color: #14213D; border-radius: 20px;" routerLink="/login"><mat-icon> login</mat-icon> Login </button>
+  <button *ngIf="isLoggedIn()" mat-raised-button color="warn" style="border-radius: 20px;" (click)="logout()">Logout <mat-icon> logout</mat-icon></button>
 </mat-toolbar>
 
-<mat-toolbar *ngIf="isLoggedIn()">
+<!-- <mat-toolbar *ngIf="isLoggedIn()">
   <button mat-raised-button color="primary" style="background-color: #14213D; margin-left: 5px; border-radius: 20px;" routerLink="/">Home</button>
   <span class="example-spacer"></span>
   <div>
@@ -14,4 +30,4 @@
     <button *ngIf="isVendor()" mat-raised-button color="primary" style="background-color: #14213D; margin-left: 5px; border-radius: 20px;" routerLink="/addNewProduct">Add New Product</button>
     <button *ngIf="isVendor()" mat-raised-button color="primary" style="background-color: #14213D; margin-left: 5px; border-radius: 20px;" routerLink="/showProductDetails">Show Products</button>
   </div>
-</mat-toolbar>
+</mat-toolbar> -->

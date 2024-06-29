@@ -1,42 +1,56 @@
 <div class="container mt-5 d-flex justify-content-center">
     <div class="card" style="padding: 30px; max-width: 400px; width: 100%;">
-        <form #loginForm = "ngForm" (ngSubmit)="login(loginForm)">
-            <h1 class="text-center mb-4">Sign in</h1>
-            <mat-form-field appearance="outline" class="w-100">
-                <mat-label>Username</mat-label>
-                <input matInput 
-                ngModel 
-                name="userName" 
-                id="userName" 
-                placeholder="Username">
-            </mat-form-field>
-
-            <mat-form-field appearance="outline" class="w-100">
-                <mat-label>Password</mat-label>
-                <input matInput [type]="hide ? 'password' : 'text'"
-                ngModel 
-                name="userPassword" 
-                id="userPassword" 
-                placeholder="Password">
-                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                  </button>
-            </mat-form-field>
-
-            <button type="submit" mat-raised-button color="primary" class="w-100" style="border-radius: 20px;  background-color: rgb(79, 175, 146);">Login</button>
-            
-        </form>
-
-        <hr>
-
-        <div class="text-center position-relative">
-            <span class="divider-text">New to our site?</span>
-        </div>
-        <button class="w-100 mt-2" mat-raised-button color="warn" type="button" style="border-radius: 20px;" (click)="registerUser()">Create Account</button>
+      <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+        <h1 class="text-center mb-4">Sign in</h1>
         
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Username</mat-label>
+          <input matInput 
+                 ngModel 
+                 name="userName" 
+                 id="userName" 
+                 placeholder="Username" 
+                 required 
+                 #userName="ngModel">
+          <mat-error *ngIf="userName.invalid && (userName.dirty || userName.touched)">
+            Username is required.
+          </mat-error>
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Password</mat-label>
+          <input matInput 
+                 [type]="hide ? 'password' : 'text'"
+                 ngModel 
+                 name="userPassword" 
+                 id="userPassword" 
+                 placeholder="Password" 
+                 required 
+                 #userPassword="ngModel">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="userPassword.invalid && (userPassword.dirty || userPassword.touched)">
+            Password is required.
+          </mat-error>
+        </mat-form-field>
+  
+        <mat-error *ngIf="loginError">{{ loginError }}</mat-error>
+        <mat-error *ngIf="formError">{{ formError }}</mat-error>
+  
+        <button type="submit" mat-raised-button color="primary" class="w-100" style="border-radius: 20px; background-color: rgb(79, 175, 146);">
+          Login
+        </button>
+      </form>
+  
+      <hr>
+  
+      <div class="text-center position-relative">
+        <span class="divider-text">New to our site?</span>
+      </div>
+      <button class="w-100 mt-2" mat-raised-button color="warn" type="button" style="border-radius: 20px;" (click)="registerUser()">Create Account</button>
     </div>
-
-    <div class="text-center">
-        
-    </div>
-</div>
+  
+    <div class="text-center"></div>
+  </div>
+  
