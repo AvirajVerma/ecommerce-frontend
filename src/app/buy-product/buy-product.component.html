@@ -79,7 +79,7 @@
     <div class="card p-4">
         <div class="row">
             <div class="col-md-6">
-                <form #orderForm="ngForm" (ngSubmit)="placeOrder(orderForm)" class="order-form" novalidate>
+                <form #orderForm="ngForm" (ngSubmit)="createTransactionAndPlaceOrder(orderForm)">
 
                     <h1 class="form-title mb-4">Enter Your Details</h1>
 

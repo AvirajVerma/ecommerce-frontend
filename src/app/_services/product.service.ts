@@ -60,4 +60,7 @@ export class ProductService {
     return this.httpClient.get("http://localhost:9090/markOrderAsDelivered/"+orderId);
   }
 
+  public createTransaction(amount : number){
+    return this.httpClient.get("http://localhost:9090/createTransaction/"+ amount)
+  }
 }
