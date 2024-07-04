@@ -117,9 +117,9 @@ export class BuyProductComponent implements OnInit {
       key: response.key,
       amount: response.amount,
       currency: response.currency,
-      name: 'TekTonic',
+      name: 'SkoopCell',
       description: 'Payment for placing your Order',
-      image: 'https://media.istockphoto.com/id/1249219777/photo/shopping-online-concept-parcel-or-paper-cartons-with-a-shopping-cart-logo-in-a-trolley-on-a.jpg?s=1024x1024&w=is&k=20&c=Gsr6lZkBHjjeP5o18w9_mvnWxMZBqB-ncOi6tqh87hM=',
+      // image: 'https://media.istockphoto.com/id/1249219777/photo/shopping-online-concept-parcel-or-paper-cartons-with-a-shopping-cart-logo-in-a-trolley-on-a.jpg?s=1024x1024&w=is&k=20&c=Gsr6lZkBHjjeP5o18w9_mvnWxMZBqB-ncOi6tqh87hM=',
       handler: (response: any) =>{
         if(response != null && response.razorpay_payment_id != null){
           this.processResponse(response, orderForm);

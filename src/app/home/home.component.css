@@ -1,11 +1,12 @@
 mat-grid-tile{
-    border: 1px solid lightgray;
+    /* border: 1px solid lightgray; */
     border-radius: 20px;
 }
 
 .image-container{
     position: relative;
     height: 300px;
+
 }
 
 .row{
