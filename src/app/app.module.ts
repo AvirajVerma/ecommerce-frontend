@@ -39,7 +39,8 @@ import { OrderDetailsComponent } from './order-details/order-details.component';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatBadgeModule} from '@angular/material/badge';
-
+import {MatMenuModule} from '@angular/material/menu';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,9 @@ import {MatBadgeModule} from '@angular/material/badge';
     MatDialogModule,
     MatButtonToggleModule,
     MatChipsModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatMenuModule,
+    MatTooltipModule
   ],
   providers: [
     AuthGuard,

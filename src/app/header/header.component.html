@@ -1,33 +1,22 @@
-<mat-toolbar color="primary" style="background-color: #14213D;">
+<mat-toolbar color="primary" style="background-color:#14213D;">
   <span style="cursor: pointer;" ><span style="font-size: 25px; color: rgb(211, 229, 182);" routerLink="/">Skoop</span><span style="color: rgb(235, 50, 50); font-size: 30px; font-weight: bold;">Cell</span></span>
   <span class="example-spacer"></span>
   <div *ngIf="isLoggedIn()">
-    <button mat-raised-button color="primary" style="background-color: #14213D; margin-left: 5px; border-radius: 20px;" routerLink="/">Home</button>
-    <!-- <span class="example-spacer"></span> -->
-  
-      <button mat-raised-button *ngIf="isUser()" color="primary" style="background-color: #14213D; margin-left: 5px; border-radius: 20px;" routerLink="/myOrders">My Orders</button>
-      <button mat-fab *ngIf="isUser()" color="primary" style="background-color: #14213D; margin-left: 5px; border-radius: 20px;" routerLink="/cart">
+      <button mat-raised-button color="primary" style="background-color: #14213D;" routerLink="/">Home</button>
+      <button mat-raised-button *ngIf="isUser()" color="primary" style="background-color: #14213D;" routerLink="/myOrders">My Orders</button>
+      <button mat-fab *ngIf="isUser()" color="primary" style="background-color: #14213D;" routerLink="/cart">
         <mat-icon matBadgeOverlap="false" [matBadge]="cartLength" matBadgeColor="warn">shopping_cart</mat-icon>
-      </button> &nbsp;
-      <button *ngIf="isVendor()" mat-raised-button color="primary" style="background-color: #14213D; margin-left: 5px; border-radius: 20px;" routerLink="/addNewProduct">Add New Product</button>
-      <button *ngIf="isVendor()" mat-raised-button color="primary" style="background-color: #14213D; margin-left: 5px; border-radius: 20px;" routerLink="/showProductDetails">Show Products</button>
-      <button *ngIf="isVendor()" mat-raised-button color="primary" style="background-color: #14213D; margin-left: 5px; border-radius: 20px;" routerLink="/orderDetails">Order Information</button> &nbsp;
+      </button> 
+      <button *ngIf="isVendor()" mat-raised-button color="primary" style="background-color: #14213D;" routerLink="/addNewProduct">Add New Product</button>
+      <button *ngIf="isVendor()" mat-raised-button color="primary" style="background-color: #14213D;" routerLink="/showProductDetails">Show Products</button>
+      <button *ngIf="isVendor()" mat-raised-button color="primary" style="background-color: #14213D;" routerLink="/orderDetails">Order Information</button>
 
   </div>
   
   &nbsp;
   &nbsp;
+  
 
-  <button *ngIf="! isLoggedIn()" mat-raised-button color="primary" style="background-color: #FCA311; color: #14213D; border-radius: 20px;" routerLink="/login"><mat-icon> login</mat-icon> Login </button>
-  <button *ngIf="isLoggedIn()" mat-raised-button color="warn" style="border-radius: 20px;" (click)="logout()">Logout <mat-icon> logout</mat-icon></button>
+  <button *ngIf="! isLoggedIn()" mat-raised-button color="primary" style="background-color: #FCA311; color: #14213D;" routerLink="/login"><mat-icon> login</mat-icon> Login </button>
+  <button *ngIf="isLoggedIn()" mat-raised-button color="warn" (click)="logout()">Logout <mat-icon> logout</mat-icon></button>
 </mat-toolbar>
-
-<!-- <mat-toolbar *ngIf="isLoggedIn()">
-  <button mat-raised-button color="primary" style="background-color: #14213D; margin-left: 5px; border-radius: 20px;" routerLink="/">Home</button>
-  <span class="example-spacer"></span>
-  <div>
-    <button mat-mini-fab *ngIf="isUser()" color="primary" style="background-color: #14213D; margin-left: 5px; border-radius: 20px;" routerLink="/cart"><mat-icon>shopping_cart</mat-icon></button>
-    <button *ngIf="isVendor()" mat-raised-button color="primary" style="background-color: #14213D; margin-left: 5px; border-radius: 20px;" routerLink="/addNewProduct">Add New Product</button>
-    <button *ngIf="isVendor()" mat-raised-button color="primary" style="background-color: #14213D; margin-left: 5px; border-radius: 20px;" routerLink="/showProductDetails">Show Products</button>
-  </div>
-</mat-toolbar> -->

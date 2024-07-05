@@ -3,6 +3,7 @@ import { UserAuthService } from '../_services/user-auth.service';
 import { Router } from '@angular/router';
 import { UserService } from '../_services/user.service';
 import { ProductService } from '../_services/product.service';
+import { CartServiceService } from '../cart-service.service';
 
 @Component({
   selector: 'app-header',
@@ -16,11 +17,13 @@ export class HeaderComponent implements OnInit {
   constructor(private userAuthService: UserAuthService,
     private router: Router,
     public userService: UserService,
-    private productService: ProductService
+    private cartService: CartServiceService
   ){}
   
   ngOnInit(): void {
-    this.getCartLength();
+    this.cartService.cartLength$.subscribe(length => {
+      this.cartLength = length;
+    });
   }
 
   public isLoggedIn(){
@@ -42,17 +45,5 @@ export class HeaderComponent implements OnInit {
 
   public isAdmin(){
     return this.userAuthService.isAdmin();
-  }
-
-  getCartLength(){
-    this.productService.getCartDetails().subscribe({
-      next: (resp: any) => {
-        console.log(resp);
-        this.cartLength = resp.length;
-      },
-      error: (err) => {
-        console.log(err);
-      }
-    });
   }
 }

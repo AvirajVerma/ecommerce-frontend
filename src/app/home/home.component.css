@@ -9,6 +9,10 @@ mat-grid-tile{
 
 }
 
+.filter-button{
+    margin-left: 20px;
+    background-color: #14213D;;
+}
 .row{
     padding: 20px;
 }

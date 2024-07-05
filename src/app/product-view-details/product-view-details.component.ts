@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from '../_model/product.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../_services/product.service';
+import { CartServiceService } from '../cart-service.service';
 
 @Component({
   selector: 'app-product-view-details',
@@ -14,7 +15,8 @@ export class ProductViewDetailsComponent implements OnInit{
   selectedProductIndex = 0;
   constructor(private activatedRoute: ActivatedRoute,
     private router: Router,
-    private productService: ProductService
+    private productService: ProductService,
+    private cartService: CartServiceService
   ){}
 
   ngOnInit(): void {
@@ -30,6 +32,7 @@ export class ProductViewDetailsComponent implements OnInit{
         next:
         (resp) => {
           console.log(resp);
+          this.cartService.updateCartLength();
         },
         error:
         (err) => {
