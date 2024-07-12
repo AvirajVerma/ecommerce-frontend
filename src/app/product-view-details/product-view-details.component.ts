@@ -3,6 +3,7 @@ import { Product } from '../_model/product.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../_services/product.service';
 import { CartServiceService } from '../cart-service.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-product-view-details',
@@ -16,7 +17,8 @@ export class ProductViewDetailsComponent implements OnInit{
   constructor(private activatedRoute: ActivatedRoute,
     private router: Router,
     private productService: ProductService,
-    private cartService: CartServiceService
+    private cartService: CartServiceService,
+    private snackBar: MatSnackBar
   ){}
 
   ngOnInit(): void {
@@ -33,6 +35,7 @@ export class ProductViewDetailsComponent implements OnInit{
         (resp) => {
           console.log(resp);
           this.cartService.updateCartLength();
+          this.openSnackBar();
         },
         error:
         (err) => {
@@ -50,5 +53,15 @@ export class ProductViewDetailsComponent implements OnInit{
     this.router.navigate(['/buyProduct', {
       isSingleProductCheckout: true, id: productId
     }]);
+  }
+
+  openSnackBar() {
+    let snackBarRef = this.snackBar.open('Product added to cart', 'Go to Cart', {
+      duration: 3000,
+    });
+
+    snackBarRef.onAction().subscribe(() => {
+      this.router.navigate(['/cart']);
+    });
   }
 }

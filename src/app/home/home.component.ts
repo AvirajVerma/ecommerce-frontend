@@ -5,6 +5,8 @@ import { Product } from '../_model/product.model';
 import { ImageProcessingService } from '../image-processing.service';
 import { HttpHeaderResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { CartServiceService } from '../cart-service.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-home',
@@ -21,7 +23,10 @@ export class HomeComponent implements OnInit {
 
   constructor(private productService: ProductService,
               private imageProcessingService: ImageProcessingService,
-              private router: Router) { }
+              private router: Router,
+              private cartService: CartServiceService,
+              private snackBar: MatSnackBar
+        ) { }
 
   ngOnInit(): void {
     this.getAllProducts();
@@ -78,5 +83,33 @@ export class HomeComponent implements OnInit {
     this.currentFilter = filter;
     this.pageNumber = 0;
     this.getAllProducts(this.value, filter);
+  }
+
+  addToCart(productId: number | any, event: Event){
+    event.stopPropagation();
+    this.productService.addToCart(productId).subscribe(
+      {
+        next:
+        (resp) => {
+          console.log(resp);
+          this.cartService.updateCartLength();
+          this.openSnackBar();
+        },
+        error:
+        (err) => {
+          console.log(err);
+        }
+      }
+    );
+  }
+
+  openSnackBar() {
+    let snackBarRef = this.snackBar.open('Product added to cart', 'Go to Cart', {
+      duration: 3000,
+    });
+
+    snackBarRef.onAction().subscribe(() => {
+      this.router.navigate(['/cart']);
+    });
   }
 }

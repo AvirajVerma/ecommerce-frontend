@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../_services/product.service';
 import { Router } from '@angular/router';
 import { CartServiceService } from '../cart-service.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-cart',
@@ -16,7 +17,8 @@ export class CartComponent implements OnInit{
 
   constructor(private productService: ProductService,
     private router: Router,
-    private cartService: CartServiceService
+    private cartService: CartServiceService,
+    private snackBar: MatSnackBar
   ){}
   
   ngOnInit(): void {
@@ -31,6 +33,7 @@ export class CartComponent implements OnInit{
           console.log(resp);
           this.getCartDetails();
           this.cartService.updateCartLength();
+          this.openSnackBar();
         },
         error:
         (err) => {
@@ -60,23 +63,13 @@ export class CartComponent implements OnInit{
     this.router.navigate(['/buyProduct', {
       isSingleProductCheckout: false, id: 0
     }]);
-
-    // this.productService.getProductDetails(false, 0).subscribe(
-    //   {
-    //     next:
-    //     (resp) => {
-    //       console.log(resp);
-    //     },
-    //     error:
-    //     (err) => {
-    //       console.log(err);
-    //     }
-    //   }
-    // );
   }
 
   toggleDescription(element: any) {
     element.showFullDescription = !element.showFullDescription;
   }
 
+  openSnackBar() {
+    let snackBarRef = this.snackBar.open('Product deleted from cart', 'Close', {duration: 3000});
+  }
 }

@@ -41,6 +41,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -83,7 +84,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatChipsModule,
     MatBadgeModule,
     MatMenuModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatSnackBarModule
   ],
   providers: [
     AuthGuard,
