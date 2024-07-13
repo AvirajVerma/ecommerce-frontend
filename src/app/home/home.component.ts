@@ -7,6 +7,7 @@ import { HttpHeaderResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { CartServiceService } from '../cart-service.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { UserAuthService } from '../_services/user-auth.service';
 
 @Component({
   selector: 'app-home',
@@ -25,7 +26,8 @@ export class HomeComponent implements OnInit {
               private imageProcessingService: ImageProcessingService,
               private router: Router,
               private cartService: CartServiceService,
-              private snackBar: MatSnackBar
+              private snackBar: MatSnackBar,
+              private userAuthService: UserAuthService
         ) { }
 
   ngOnInit(): void {
@@ -111,5 +113,8 @@ export class HomeComponent implements OnInit {
     snackBarRef.onAction().subscribe(() => {
       this.router.navigate(['/cart']);
     });
+  }
+  showAddToCartButton(): boolean {
+    return !this.userAuthService.isLoggedIn() || this.userAuthService.isUser();
   }
 }

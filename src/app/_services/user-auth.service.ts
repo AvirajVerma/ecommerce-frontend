@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserAuthService {
+  private userFirstNameSubject = new BehaviorSubject<string | null>(this.getUserFirstName());
+  public userFirstName$ = this.userFirstNameSubject.asObservable();
 
   constructor() { }
 
@@ -24,8 +27,18 @@ export class UserAuthService {
     return localStorage.getItem("jwtToken");
    }
 
+  public setUserFirstName(firstName: string){
+    localStorage.setItem("userFirstName", firstName);
+    this.userFirstNameSubject.next(firstName);
+  }
+
+  public getUserFirstName() : string | null{
+    return localStorage.getItem("userFirstName");
+  }
+
    public clear(){
     localStorage.clear();
+    this.userFirstNameSubject.next(null);
    }
 
    public isLoggedIn(){

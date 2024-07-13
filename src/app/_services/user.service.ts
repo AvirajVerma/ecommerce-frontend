@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UserAuthService } from './user-auth.service';
+import { tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,12 @@ export class UserService {
 
 
   public login(loginData: any){
-    return this.httpclient.post(this.PATH_OF_API + "/authenticate", loginData, { headers: this.requestHeader});
+    return this.httpclient.post(this.PATH_OF_API + "/authenticate", loginData, { headers: this.requestHeader})
+      .pipe(
+        tap((response: any) => {
+          this.userAuthService.setUserFirstName(response.user.userFirstName);
+        })
+      );
   }
 
   public forUser(){

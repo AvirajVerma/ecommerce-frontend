@@ -44,7 +44,7 @@
                     <b style="font-size: medium;">{{p.productDiscountedPrice | currency: 'INR' }}</b> &nbsp; <b style="text-decoration: line-through; font-weight: 200;">{{p.productActualPrice | currency: 'INR' }}</b>
                 </div>
                 <div class="mt-3">
-                    <button mat-raised-button color="warn" style="border-radius: 20px;" (click)="addToCart(p.productId, $event)">Add to Cart</button>
+                    <button *ngIf="showAddToCartButton()" mat-raised-button color="warn" style="border-radius: 20px;" (click)="addToCart(p.productId, $event)">Add to Cart</button>
                 </div>
             </div>
         </mat-grid-tile>

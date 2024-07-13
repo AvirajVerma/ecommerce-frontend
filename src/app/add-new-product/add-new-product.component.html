@@ -55,12 +55,11 @@
 
                     <div class="dropzone"
                     appDrag
-                    (files)="fileDropped($event)">
+                    (files)="fileDropped($event)"
+                    (click)="selectFile.click()">
                         <div class="text-wrapper">
                             <div class="centered">
-                                Drag and Drop your file or 
-                                <a (click)="selectFile.click()" class="browse-button">browse</a>
-                                a file.
+                                Drag and Drop your file or browse a file.
                                 <mat-icon class="mt-3">add_photo_alternate</mat-icon>
                             </div>
                         </div>

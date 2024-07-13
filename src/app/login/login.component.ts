@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { UserService } from '../_services/user.service';
 import { UserAuthService } from '../_services/user-auth.service';
 import { Router } from '@angular/router';
+import { CartServiceService } from '../cart-service.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,8 @@ export class LoginComponent implements OnInit {
   formError: string = '';
   constructor(private userService: UserService,
               private userAuthService: UserAuthService,
-              private router: Router) {}
+              private router: Router,
+            public cartService: CartServiceService) {}
 
   ngOnInit(): void {}
 
@@ -48,6 +50,7 @@ export class LoginComponent implements OnInit {
         
         else {
           this.router.navigate(['/']);
+          this.cartService.updateCartLength();
         }
       },
       error: (error) => {
