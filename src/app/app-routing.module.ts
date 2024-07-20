@@ -18,6 +18,7 @@ import { RegisterComponent } from './register/register.component';
 import { CartComponent } from './cart/cart.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { OrderDetailsComponent } from './order-details/order-details.component';
+import { UserDetailsResolveService } from './user-details-resolve.service';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -39,7 +40,11 @@ const routes: Routes = [
     }
   },
   {path: 'orderConfirm', component: OrderConfirmationComponent, canActivate:[AuthGuard], data:{roles:['User']}},
-  {path: 'register', component: RegisterComponent},
+  {path: 'register', component: RegisterComponent ,
+    resolve:{
+      userDetails: UserDetailsResolveService
+    }
+  },
   {path: 'cart', component: CartComponent, canActivate:[AuthGuard], data:{roles:['User']}},
   {path: 'myOrders', component: MyOrdersComponent, canActivate:[AuthGuard], data:{roles:['User']}},
   {path: 'orderDetails', component: OrderDetailsComponent, canActivate:[AuthGuard], data:{roles:['Vendor']}}

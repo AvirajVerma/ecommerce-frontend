@@ -1,74 +1,81 @@
 <div class="container mt-5 d-flex justify-content-center">
-    <div class="card" style="padding: 30px; max-width: 400px; width: 100%;">
-      <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
-        <button mat-button><mat-icon>arrow_back</mat-icon></button>
-        <h1 class="text-center mb-4">Create Account</h1>
+  <div class="card" style="padding: 30px; max-width: 400px; width: 100%;">
+    <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
+      <button *ngIf="!isLoggedIn()" mat-button><mat-icon>arrow_back</mat-icon></button>
+      <h1 *ngIf="!isLoggedIn()" class="text-center mb-4">Create Account</h1>
+      <h1 *ngIf="isLoggedIn()" class="text-center mb-4">Personal Details</h1>
 
-        <mat-form-field appearance="outline" class="w-100">
-          <mat-label>First Name</mat-label>
-          <input matInput 
-                 ngModel 
-                 name="userFirstName" 
-                 id="userFirstName" 
-                 placeholder="First Name" 
-                 required 
-                 #userFirstName="ngModel">
-          <mat-error *ngIf="userFirstName.invalid && (userFirstName.dirty || userFirstName.touched)">
-            First Name is required.
-          </mat-error>
-        </mat-form-field>
-  
-        <mat-form-field appearance="outline" class="w-100">
-          <mat-label>Last Name</mat-label>
-          <input matInput 
-                 ngModel 
-                 name="userLastName" 
-                 id="userLastName" 
-                 placeholder="Last Name" 
-                 required 
-                 #userLastName="ngModel">
-          <mat-error *ngIf="userLastName.invalid && (userLastName.dirty || userLastName.touched)">
-            Last Name is required.
-          </mat-error>
-        </mat-form-field>
-  
-        <mat-form-field appearance="outline" class="w-100">
-          <mat-label>Username</mat-label>
-          <input matInput 
-                 ngModel 
-                 name="userName" 
-                 id="userName" 
-                 placeholder="Username" 
-                 required 
-                 #userName="ngModel">
-          <mat-error *ngIf="userName.invalid && (userName.dirty || userName.touched)">
-            Username is required.
-          </mat-error>
-        </mat-form-field>
-  
-        <mat-form-field appearance="outline" class="w-100">
-          <mat-label>Password</mat-label>
-          <input matInput [type]="hide ? 'password' : 'text'"
-                 ngModel 
-                 name="userPassword" 
-                 id="userPassword" 
-                 placeholder="Password" 
-                 required 
-                 #userPassword="ngModel">
-          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-          </button>
-          <mat-error *ngIf="userPassword.invalid && (userPassword.dirty || userPassword.touched)">
-            Password is required.
-          </mat-error>
-        </mat-form-field>
-  
-        <div class="text-center">
-          <button type="submit" mat-raised-button color="warn" style="border-radius: 20px;" [disabled]="registerForm.invalid">
-            Register
-          </button>
-        </div>
-      </form>
-    </div>
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>First Name</mat-label>
+        <input matInput 
+               [(ngModel)]="user.userFirstName" 
+               name="userFirstName" 
+               id="userFirstName" 
+               placeholder="First Name" 
+               required 
+               #userFirstName="ngModel"
+               [disabled]="isLoggedIn()">
+        <mat-error *ngIf="userFirstName.invalid && (userFirstName.dirty || userFirstName.touched)">
+          First Name is required.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Last Name</mat-label>
+        <input matInput 
+               [(ngModel)]="user.userLastName" 
+               name="userLastName" 
+               id="userLastName" 
+               placeholder="Last Name" 
+               required 
+               #userLastName="ngModel"
+               [disabled]="isLoggedIn()">
+        <mat-error *ngIf="userLastName.invalid && (userLastName.dirty || userLastName.touched)">
+          Last Name is required.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Username</mat-label>
+        <input matInput 
+               [(ngModel)]="user.userName" 
+               name="userName" 
+               id="userName" 
+               placeholder="Username" 
+               required 
+               #userName="ngModel"
+               [disabled]="isLoggedIn()">
+        <mat-error *ngIf="userName.invalid && (userName.dirty || userName.touched)">
+          Username is required.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Password</mat-label>
+        <input matInput 
+               [type]="hide ? 'password' : 'text'"
+               [(ngModel)]="user.userPassword" 
+               name="userPassword" 
+               id="userPassword" 
+               placeholder="Password" 
+               required 
+               #userPassword="ngModel">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="userPassword.invalid && (userPassword.dirty || userPassword.touched)">
+          Password is required.
+        </mat-error>
+      </mat-form-field>
+
+      <div class="text-center">
+        <button *ngIf="!isLoggedIn()" type="submit" mat-raised-button color="warn" style="border-radius: 20px;" [disabled]="registerForm.invalid">
+          Register
+        </button>
+        <button *ngIf="isLoggedIn()" type="submit" mat-raised-button color="primary" style="border-radius: 20px; background-color: rgb(79, 175, 146);" [disabled]="registerForm.invalid">
+          Save
+        </button>
+      </div>
+    </form>
   </div>
-  
+</div>

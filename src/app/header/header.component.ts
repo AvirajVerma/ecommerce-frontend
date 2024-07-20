@@ -61,4 +61,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public isAdmin(){
     return this.userAuthService.isAdmin();
   }
+
+  updateUserDetails(){
+    this.router.navigate(['/register']);
+  }
 }

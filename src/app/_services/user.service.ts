@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UserAuthService } from './user-auth.service';
-import { tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
+import { User } from '../_model/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -60,8 +61,20 @@ export class UserService {
     return isMatch;
   }
 
-  public register(registerData: any){
-    return this.httpclient.post(this.PATH_OF_API + '/registerNewUser', registerData);
+  register(user: User): Observable<User> {
+    return this.httpclient.post<User>(`${this.PATH_OF_API}/registerNewUser`, user);
   }
 
+  updateUserPassword(userName: string, newPassword: string): Observable<any> {
+    return this.httpclient.put(`${this.PATH_OF_API}/${userName}/password`, { newPassword });
+  }
+
+  public getUserDetailsByUserName(): Observable<User> {
+    const headers = new HttpHeaders({
+      'Cache-Control': 'no-cache',
+      'Pragma': 'no-cache',
+      'Expires': '0'
+    });
+    return this.httpclient.get<User>(`${this.PATH_OF_API}/getUserDetailsByUserName`, { headers });
+  }
 }
