@@ -11,7 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class CartComponent implements OnInit{
 
-  displayedColumns: string[] = ['Item', 'Price', 'Action'];
+  displayedColumns: string[] = ['Image', 'Item', 'Price', 'Action'];
 
   cartDetails: any[] = [];
 
@@ -71,5 +71,14 @@ export class CartComponent implements OnInit{
 
   openSnackBar() {
     let snackBarRef = this.snackBar.open('Product deleted from cart', 'Close', {duration: 3000});
+  }
+
+  getImageUrl(image: any): string {
+    if (image.url) {
+      return image.url.changingThisBreaksApplicationSecurity || '';
+    } else if (image.picByte) {
+      return `data:image/jpeg;base64,${image.picByte}`;
+    }
+    return '';
   }
 }
