@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { UserAuthService } from './user-auth.service';
 import { Observable, tap } from 'rxjs';
 import { User } from '../_model/user.model';
+import { ContactUs } from '../_model/contact-us.model';
 
 @Injectable({
   providedIn: 'root'
@@ -76,5 +77,9 @@ export class UserService {
       'Expires': '0'
     });
     return this.httpclient.get<User>(`${this.PATH_OF_API}/getUserDetailsByUserName`, { headers });
+  }
+
+  newContactUs(contactUs: ContactUs): Observable<ContactUs>{
+    return this.httpclient.post<ContactUs>(`${this.PATH_OF_API}/newContactUs`, contactUs);
   }
 }

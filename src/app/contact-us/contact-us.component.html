@@ -1,0 +1,89 @@
+<div class="container contact-container mt-5">
+  <div class="contact-info">
+    <h1>Contact Us</h1>
+    <ul class="p-3">
+        
+        <li>
+          <div class="d-flex">
+            <div>
+              <button mat-fab color="primary" (click)="openMap()" style="border-radius: 50px;">
+                <mat-icon>location_on</mat-icon>
+              </button>
+            </div>
+            <div class="mx-4">
+              <h2>Address:</h2>
+              <h3>2nd floor, Aashirwad Video, SCO 1016-17, near Mobile market, Sector 22B, Sector 22, Chandigarh, 160022</h3>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class="d-flex">
+            <div>
+              <button mat-fab color="primary" (click)="callPhone()" style="border-radius: 50px;">
+                <mat-icon>call</mat-icon>
+              </button>
+            </div>
+            <div class="mx-4">
+              <h2>Phone:</h2>
+              <h3>7302221721</h3>
+            </div>
+          </div>
+        </li>
+        
+        <li>
+          <div class="d-flex">
+            <div>
+              <button mat-fab color="primary" (click)="sendEmail()" style="border-radius: 50px;">
+                <mat-icon>mail</mat-icon>
+              </button>
+            </div>
+            <div class="mx-4">
+              <h2>Email:</h2>
+              <h3>avirajverma158@gmail.com</h3>
+            </div>
+          </div>
+        </li>
+    </ul>
+  </div>
+
+  
+  <div class="contact-form mt-5">
+    <h2>Send Message</h2>
+    <form (ngSubmit)="newContactUs(contactForm)" #contactForm="ngForm">
+
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Full Name</mat-label>
+        <input matInput
+        required
+        name="fullName"
+        id="fullName" 
+        [(ngModel)]="contactUs.fullName" 
+        placeholder="Enter your full name">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Email</mat-label>
+        <input matInput
+        required
+        name="email" 
+        id="email"
+        [(ngModel)]="contactUs.email"
+        placeholder="Enter your email">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Message</mat-label>
+        <input matInput
+        required
+        name="message" 
+        id="message"
+        [(ngModel)]="contactUs.message" 
+        placeholder="Type your message...">
+      </mat-form-field>
+
+      <button type="submit" mat-raised-button color="primary" 
+      [disabled]="!contactForm.form.valid">Send</button>
+    </form>
+  </div>
+</div>

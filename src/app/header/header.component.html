@@ -4,13 +4,16 @@
   <div *ngIf="isLoggedIn()">
       <button mat-raised-button color="primary" style="background-color: #14213D;" routerLink="/">Home</button>
       <button mat-raised-button *ngIf="isUser()" color="primary" style="background-color: #14213D;" routerLink="/myOrders">My Orders</button>
-      <button mat-fab *ngIf="isUser()" color="primary" style="background-color: #14213D;" routerLink="/cart">
+      <button mat-fab *ngIf="isUser()" matTooltip="Cart" color="primary" style="background-color: #14213D;" routerLink="/cart">
         <mat-icon matBadgeOverlap="false" [matBadge]="cartLength" matBadgeColor="warn">shopping_cart</mat-icon>
-      </button> 
+      </button>
+      <button mat-fab *ngIf="isUser()" matTooltip="Customer Care" color="primary" style="background-color: #14213D;" routerLink="/contact-us">
+        <mat-icon>support_agent</mat-icon>
+      </button>
       <button *ngIf="isVendor()" mat-raised-button color="primary" style="background-color: #14213D;" routerLink="/addNewProduct">Add New Product</button>
       <button *ngIf="isVendor()" mat-raised-button color="primary" style="background-color: #14213D;" routerLink="/showProductDetails">Show Products</button>
       <button *ngIf="isVendor()" mat-raised-button color="primary" style="background-color: #14213D;" routerLink="/orderDetails">Order Information</button>
-      <button mat-raised-button color="primary" style="background-color: #14213D; color: white; display: flex; align-items: center;" (click)="updateUserDetails()">
+      <button mat-raised-button matTooltip="Profile" color="primary" style="background-color: #14213D; color: white; display: flex; align-items: center;" (click)="updateUserDetails()">
         <mat-icon>person</mat-icon>
         <span style="margin-left: 5px;">{{ userFirstName }}</span>
       </button>

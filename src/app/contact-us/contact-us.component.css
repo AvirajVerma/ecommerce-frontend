@@ -1,0 +1,68 @@
+h1 {
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.contact-container {
+  display: flex;
+  padding: 1rem;
+}
+
+.contact-info {
+  flex: 1;
+  margin-right: 2rem;
+  /* border: 2px solid black; */
+  border-radius: 20px;
+  padding: 10px;
+}
+
+.contact-info ul {
+  list-style: none;
+  padding: 0;
+}
+
+.contact-info ul li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.contact-info ul li .icon {
+  margin-right: 1rem;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.contact-form {
+  flex: 1;
+  /* border: 1px solid rgb(176, 176, 176); */
+  border-radius: 20px;
+  padding: 10px;
+  /* padding: 20px; */
+  /* margin: 10px; */
+}
+
+.contact-form h2 {
+  margin-bottom: 1rem;
+}
+
+.form-group {
+  /* margin-bottom: 1rem; */
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
